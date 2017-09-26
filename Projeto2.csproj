@@ -76,18 +76,14 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Character\IKhandling.cs" />
     <Compile Include="Assets\_Character\PistolPos.cs" />
     <Compile Include="Assets\_Character\PlayerMove.cs" />
     <Compile Include="Assets\_Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\ButtonFunction.cs" />
+    <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\MovementCamera.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />
@@ -108,7 +104,6 @@
     <Compile Include="Assets\Nature Pack\Standard Assets\Utility\LerpControlledBob.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Build_Data\Mono\etc\mono\mconfig\config.xml" />
     <None Include="Assets\LowPolyVegetationPackLite\Readme.txt" />
     <None Include="Assets\Mega Fantasy Props Pack\README.txt" />
     <None Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
