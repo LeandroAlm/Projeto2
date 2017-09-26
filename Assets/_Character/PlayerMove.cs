@@ -92,7 +92,7 @@ public class PlayerMove : MonoBehaviour
         lookDir.y = 0;
 
         transform.LookAt(transform.position + lookDir, Vector3.up);
-
+        
     }
 
     void SetupAnimator()
