@@ -82,8 +82,10 @@
     <Compile Include="Assets\_Character\PistolPos.cs" />
     <Compile Include="Assets\_Character\PlayerMove.cs" />
     <Compile Include="Assets\_Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\_Scripts\SmoothCam.cs" />
     <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\ButtonFunction.cs" />
     <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\MovementCamera.cs" />
+    <Compile Include="Assets\BasicBandit\PlayerController1.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />

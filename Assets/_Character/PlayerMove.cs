@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
 
-    private Animator animator;
+    private Animator anim;
     private Rigidbody rb;
     public float Speed;
     Vector3 LookPos;
@@ -15,13 +15,18 @@ public class PlayerMove : MonoBehaviour
     float forwarAmount;
     float turnAmount;
 
+    bool isWalking, isFarming;
+
     // Use this for initialization
     void Start()
     {
         //animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        SetupAnimator();
+        //SetupAnimator();
         cam = Camera.main.transform;
+
+        isFarming = false;
+        isWalking = false;
     }
     
 
@@ -35,6 +40,7 @@ public class PlayerMove : MonoBehaviour
         {
             camForward = Vector3.Scale(cam.up, new Vector3(1, 0, 1)).normalized;
             move = vertical * camForward + horizontal * cam.right;
+            
         }
         else
         {
@@ -52,16 +58,21 @@ public class PlayerMove : MonoBehaviour
 
         rb.AddForce((movement * Speed / Time.deltaTime)/5);
 
-        
+     
     }
 
     void Move(Vector3 move)
     {
+
+
         if (move.magnitude > 1)
+        {
             move.Normalize();
+            isWalking = true;
+        }
         this.moveInput = move;
         ConvertMoveInput();
-        UpdateAnimator();
+        //UpdateAnimator();
     }
 
     void ConvertMoveInput()
@@ -71,11 +82,11 @@ public class PlayerMove : MonoBehaviour
         forwarAmount = localMove.z;
     }
 
-    void UpdateAnimator()
-    {
-        animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
-        animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
-    }
+    //void UpdateAnimator()
+    //{
+    //    animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
+    //    animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+    //}
 
     private void Update()
     {
@@ -92,22 +103,37 @@ public class PlayerMove : MonoBehaviour
         lookDir.y = 0;
 
         transform.LookAt(transform.position + lookDir, Vector3.up);
-        
+
+        //AnimationController();
+
+
     }
 
-    void SetupAnimator()
+    void AnimationController()
     {
-        animator = GetComponent<Animator>();
-
-        foreach (var childAnimator in GetComponentsInChildren<Animator>())
+        if (isWalking)
         {
-            if (childAnimator != animator)
-            {
-                animator.avatar = childAnimator.avatar;
-                Destroy(childAnimator);
-                break;
-            }
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
         }
     }
+
+    //void SetupAnimator()
+    //{
+    //    animator = GetComponent<Animator>();
+
+    //    foreach (var childAnimator in GetComponentsInChildren<Animator>())
+    //    {
+    //        if (childAnimator != animator)
+    //        {
+    //            animator.avatar = childAnimator.avatar;
+    //            Destroy(childAnimator);
+    //            break;
+    //        }
+    //    }
+    //}
 
 }
