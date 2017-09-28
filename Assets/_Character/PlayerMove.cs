@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
 
-    private Animator anim;
+    private Animator animator;
     private Rigidbody rb;
     public float Speed;
     Vector3 LookPos;
@@ -22,7 +22,7 @@ public class PlayerMove : MonoBehaviour
     {
         //animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        //SetupAnimator();
+        SetupAnimator();
         cam = Camera.main.transform;
 
         isFarming = false;
@@ -63,16 +63,14 @@ public class PlayerMove : MonoBehaviour
 
     void Move(Vector3 move)
     {
-
-
         if (move.magnitude > 1)
         {
             move.Normalize();
-            isWalking = true;
+            //isWalking = true;
         }
         this.moveInput = move;
         ConvertMoveInput();
-        //UpdateAnimator();
+        UpdateAnimator();
     }
 
     void ConvertMoveInput()
@@ -82,11 +80,11 @@ public class PlayerMove : MonoBehaviour
         forwarAmount = localMove.z;
     }
 
-    //void UpdateAnimator()
-    //{
-    //    animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
-    //    animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
-    //}
+    void UpdateAnimator()
+    {
+        animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
+        animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+    }
 
     private void Update()
     {
@@ -109,31 +107,31 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    void AnimationController()
-    {
-        if (isWalking)
-        {
-            anim.SetBool("Walking", true);
-        }
-        else
-        {
-            anim.SetBool("Walking", false);
-        }
-    }
-
-    //void SetupAnimator()
+    //void AnimationController()
     //{
-    //    animator = GetComponent<Animator>();
-
-    //    foreach (var childAnimator in GetComponentsInChildren<Animator>())
+    //    if (isWalking)
     //    {
-    //        if (childAnimator != animator)
-    //        {
-    //            animator.avatar = childAnimator.avatar;
-    //            Destroy(childAnimator);
-    //            break;
-    //        }
+    //        animator.SetBool("Walking", true);
+    //    }
+    //    else
+    //    {
+    //        animator.SetBool("Walking", false);
     //    }
     //}
+
+    void SetupAnimator()
+    {
+        animator = GetComponent<Animator>();
+
+        foreach (var childAnimator in GetComponentsInChildren<Animator>())
+        {
+            if (childAnimator != animator)
+            {
+                animator.avatar = childAnimator.avatar;
+                Destroy(childAnimator);
+                break;
+            }
+        }
+    }
 
 }
