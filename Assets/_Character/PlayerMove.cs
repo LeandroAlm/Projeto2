@@ -10,12 +10,14 @@ public class PlayerMove : MonoBehaviour
     public float Speed;
     Vector3 LookPos;
 
-    Transform cam;
+    private Transform cam;
     Vector3 camForward, move, moveInput;
     float forwarAmount;
     float turnAmount;
 
-    bool isWalking, isFarming;
+    //bool isWalking, isFarming;
+
+    Farm farm;
 
     // Use this for initialization
     void Start()
@@ -24,9 +26,8 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SetupAnimator();
         cam = Camera.main.transform;
-
-        isFarming = false;
-        isWalking = false;
+        farm = GetComponent<Farm>();
+        
     }
     
 
@@ -55,10 +56,24 @@ public class PlayerMove : MonoBehaviour
 
 
         Vector3 movement = new Vector3(horizontal, 0, vertical);
+        if (horizontal != 0 && vertical != 0)
+        {
+            rb.AddForce((movement * Speed / Time.deltaTime)/2);
+            animator.speed = 2;
+        }
+        else
+        {
+            rb.AddForce((movement * Speed / Time.deltaTime) / 5);
+            animator.speed = 1;
+        }
 
-        rb.AddForce((movement * Speed / Time.deltaTime)/5);
+        // FARMAR!!!
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("Farming");
+            farm.farm = true;
+        }
 
-     
     }
 
     void Move(Vector3 move)
@@ -104,6 +119,7 @@ public class PlayerMove : MonoBehaviour
 
         //AnimationController();
 
+        
 
     }
 
