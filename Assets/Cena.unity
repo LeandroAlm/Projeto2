@@ -6147,7 +6147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 4397049938904056, guid: 725933f6e1ef37d409b46a0b82b184eb, type: 2}
   terreno: {fileID: 700889108}
-  farm: 0
 --- !u!1001 &1937326976
 Prefab:
   m_ObjectHideFlags: 0

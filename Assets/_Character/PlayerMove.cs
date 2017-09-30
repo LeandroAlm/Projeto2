@@ -17,8 +17,6 @@ public class PlayerMove : MonoBehaviour
 
     //bool isWalking, isFarming;
 
-    Farm farm;
-
     // Use this for initialization
     void Start()
     {
@@ -26,7 +24,6 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SetupAnimator();
         cam = Camera.main.transform;
-        farm = GetComponent<Farm>();
         
     }
     
@@ -71,7 +68,6 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("Farming");
-            farm.farm = true;
         }
 
     }
