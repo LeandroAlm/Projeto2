@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Farm : MonoBehaviour {
-
-    public Transform tree;
+    
     private Transform player;
-    public Terrain terreno;
+    private Terrain terreno;
     //public bool farm;
     
     Ray ray;
@@ -17,6 +16,7 @@ public class Farm : MonoBehaviour {
 	void Start ()
     {
         player = GetComponent<Transform>();
+        //terreno = GetComponent<Terrain>();
         
 	}
 	
@@ -33,23 +33,34 @@ public class Farm : MonoBehaviour {
   //              farm = false;
   //          }
   //      }
-        Debug.Log(wood);
+        
 
         //ray.origin = player.transform.position;
         //ray.direction = player.transform.forward;
         forward = transform.TransformDirection(Vector3.forward * 10 + new Vector3(0,1,0));
-        Ray ray = new Ray(transform.position, transform.forward);
         Debug.DrawRay(transform.position, forward, Color.green);
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //if (terreno.tag == "Tree")
-        if (Physics.Raycast(ray, out hit))
+        if (Input.GetMouseButtonDown(0))
         {
-            //if (hit.rigidbody != null)
-            Debug.Log(hit.collider.tag);
+            Ray ray = new Ray(transform.position, transform.forward);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.GetComponent<Terrain>() == null)
+                    return;
+
+                //terreno = hit.collider.gameObject.GetComponent<Terrain>();
+                float groundHeight = terreno.SampleHeight(hit.point);
+                Debug.Log(hit.collider.gameObject.GetComponent<Terrain>());
             
-            if (Input.GetMouseButtonDown(0))
-                if (hit.collider.tag == terreno.tag)
+            
+                if (hit.point.y - .2f > groundHeight)
+                {
+                    Debug.Log(wood);
                     wood++;
+                }
+            }
         }
     }
 }
