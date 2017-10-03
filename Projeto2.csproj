@@ -93,6 +93,7 @@
     <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\ButtonFunction.cs" />
     <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\MovementCamera.cs" />
     <Compile Include="Assets\BasicBandit\PlayerController1.cs" />
+    <Compile Include="Assets\detailScript.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
     <Compile Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />
@@ -114,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyVegetationPackLite\Readme.txt" />
+    <None Include="Assets\LowpolyVegetationPackFree\Readme.txt" />
     <None Include="Assets\Mega Fantasy Props Pack\README.txt" />
     <None Include="Assets\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
   </ItemGroup>
