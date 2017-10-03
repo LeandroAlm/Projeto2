@@ -15,16 +15,13 @@ public class PlayerMove : MonoBehaviour
     float forwarAmount;
     float turnAmount;
 
-    //bool isWalking, isFarming;
+    public Transform Axe;
 
-    // Use this for initialization
     void Start()
     {
-        //animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         SetupAnimator();
         cam = Camera.main.transform;
-        
     }
     
 
@@ -49,20 +46,12 @@ public class PlayerMove : MonoBehaviour
         {
             move.Normalize();
         }
+
         Move(move);
-
-
+        
         Vector3 movement = new Vector3(horizontal, 0, vertical);
-        if (horizontal != 0 && vertical != 0)
-        {
-            rb.AddForce((movement * Speed / Time.deltaTime)/2);
-            animator.speed = 2;
-        }
-        else
-        {
-            rb.AddForce((movement * Speed / Time.deltaTime) / 5);
-            animator.speed = 1;
-        }
+        
+        rb.AddForce((movement * Speed / Time.deltaTime) / 5);
 
         // FARMAR!!!
         if (Input.GetMouseButtonDown(0))
@@ -77,7 +66,6 @@ public class PlayerMove : MonoBehaviour
         if (move.magnitude > 1)
         {
             move.Normalize();
-            //isWalking = true;
         }
         this.moveInput = move;
         ConvertMoveInput();
@@ -93,8 +81,18 @@ public class PlayerMove : MonoBehaviour
 
     void UpdateAnimator()
     {
-        animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
-        animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+        if (animator.GetBool("Gun") == true)
+        {
+            animator.SetBool("Sword", false);
+            animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
+            animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+        }
+        if (animator.GetBool("Sword") == true)
+        {
+            animator.SetBool("Gun", false);
+            animator.SetFloat("ForwardS", forwarAmount, 0.1f, Time.deltaTime);
+            animator.SetFloat("TurnS", turnAmount, 0.1f, Time.deltaTime);
+        }
     }
 
     private void Update()
@@ -112,24 +110,22 @@ public class PlayerMove : MonoBehaviour
         lookDir.y = 0;
 
         transform.LookAt(transform.position + lookDir, Vector3.up);
-
-        //AnimationController();
-
         
+        if (Input.GetKeyDown("1"))
+        {
+            animator.SetBool("Gun", true);
+            animator.SetBool("Sword", false);
+            Axe.gameObject.SetActive(false);
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            animator.SetBool("Sword", true);
+            animator.SetBool("Gun", false);
+            Axe.gameObject.SetActive(true);
+        }
 
     }
-
-    //void AnimationController()
-    //{
-    //    if (isWalking)
-    //    {
-    //        animator.SetBool("Walking", true);
-    //    }
-    //    else
-    //    {
-    //        animator.SetBool("Walking", false);
-    //    }
-    //}
+    
 
     void SetupAnimator()
     {

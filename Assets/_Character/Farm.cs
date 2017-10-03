@@ -6,6 +6,7 @@ public class Farm : MonoBehaviour {
     
     private Transform player;
     private Terrain terreno;
+    public TreeInstance treeInstance;
     //public bool farm;
     
     Ray ray;
@@ -26,13 +27,14 @@ public class Farm : MonoBehaviour {
         RaycastHit hit;
         float distance;
 		//if (Vector3.Distance(player.transform.position, tree.transform.position) < 2)
-  //      {
-  //          if (farm == true)
-  //          {
-  //              wood++;
-  //              farm = false;
-  //          }
-  //      }
+//      {
+//          if (farm == true)
+//          {
+//              wood++;
+//              farm = false;
+//          }
+//      }
+        
         
 
         //ray.origin = player.transform.position;
@@ -51,14 +53,14 @@ public class Farm : MonoBehaviour {
                     return;
 
                 //terreno = hit.collider.gameObject.GetComponent<Terrain>();
-                float groundHeight = terreno.SampleHeight(hit.point);
+                //float groundHeight = terreno.SampleHeight(hit.point);
                 Debug.Log(hit.collider.gameObject.GetComponent<Terrain>());
             
             
-                if (hit.point.y - .2f > groundHeight)
+                if (hit.transform.position == treeInstance.position)
                 {
-                    Debug.Log(wood);
                     wood++;
+                    Debug.Log(wood);
                 }
             }
         }
