@@ -17,17 +17,28 @@ public class PlayerMove : MonoBehaviour
 
     public Transform Axe;
 
+
+ 
+
+
+    private Camera mainCamera;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         SetupAnimator();
         cam = Camera.main.transform;
+
+    
     }
     
 
     // Update is called once per frame
     void FixedUpdate()
-    {        
+    {
+  
+
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -35,7 +46,7 @@ public class PlayerMove : MonoBehaviour
         {
             camForward = Vector3.Scale(cam.up, new Vector3(1, 0, 1)).normalized;
             move = vertical * camForward + horizontal * cam.right;
-            
+
         }
         else
         {
@@ -48,9 +59,9 @@ public class PlayerMove : MonoBehaviour
         }
 
         Move(move);
-        
+
         Vector3 movement = new Vector3(horizontal, 0, vertical);
-        
+
         rb.AddForce((movement * Speed / Time.deltaTime) / 5);
 
         // FARMAR!!!
@@ -78,6 +89,7 @@ public class PlayerMove : MonoBehaviour
         turnAmount = localMove.x;
         forwarAmount = localMove.z;
     }
+
 
     void UpdateAnimator()
     {
