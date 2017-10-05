@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController1 : MonoBehaviour {
-
+public class PlayerController1 : MonoBehaviour
+{
     private Animator anim;
     private Rigidbody rb;
     public float Speed;
@@ -17,7 +17,8 @@ public class PlayerController1 : MonoBehaviour {
     bool isWalking, isFarming;
 
 
-    void Start () {
+    void Start ()
+    {
 
 
         rb = GetComponent<Rigidbody>();

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PLayerControl : MonoBehaviour
 {
-
     private Animator animator;
     private Rigidbody rb;
 
@@ -41,9 +40,6 @@ public class PLayerControl : MonoBehaviour
         UpdateAnimator();
         ConvertMoveInput();
 
-
-        
-
         // FARMAR!!!
         if (Input.GetMouseButtonDown(0))
         {
@@ -52,14 +48,13 @@ public class PLayerControl : MonoBehaviour
 
     }
 
-
-
     void ConvertMoveInput()
     {
         Vector3 localMove = transform.InverseTransformDirection(moveInput);
         turnAmount = localMove.x;
         forwarAmount = localMove.z;
     }
+
     void MovementTopDown()
     {
         {
@@ -67,9 +62,7 @@ public class PLayerControl : MonoBehaviour
 
             moveInput = transform.TransformDirection(moveInput);
 
-            moveVelocity = moveInput * moveSpeed;
-
-            
+            moveVelocity = moveInput * moveSpeed;         
 
             Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -88,10 +81,7 @@ public class PLayerControl : MonoBehaviour
         }
 
     }
-
    
-   
-
     void UpdateAnimator()
     {
         if (animator.GetBool("Gun") == true)
@@ -100,6 +90,7 @@ public class PLayerControl : MonoBehaviour
             animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
             animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
         }
+
         if (animator.GetBool("Sword") == true)
         {
             animator.SetBool("Gun", false);
@@ -110,9 +101,6 @@ public class PLayerControl : MonoBehaviour
 
     private void Update()
     {
-       
-       
-
         if (Input.GetKeyDown("1"))
         {
             animator.SetBool("Gun", true);
@@ -127,7 +115,6 @@ public class PLayerControl : MonoBehaviour
         }
 
     }
-
 
     void SetupAnimator()
     {
