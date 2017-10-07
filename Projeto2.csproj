@@ -84,10 +84,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Character\BeltWeapons.cs" />
     <Compile Include="Assets\_Character\Farm.cs" />
     <Compile Include="Assets\_Character\HealthBar.cs" />
-    <Compile Include="Assets\_Character\IKhandling.cs" />
-    <Compile Include="Assets\_Character\PistolPos.cs" />
     <Compile Include="Assets\_Character\PlayerMove.cs" />
     <Compile Include="Assets\_Character\PlayerSatatus.cs" />
     <Compile Include="Assets\_Scripts\CameraFollow.cs" />

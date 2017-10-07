@@ -103,15 +103,16 @@ public class PLayerControl : MonoBehaviour
     {
         if (Input.GetKeyDown("1"))
         {
-            animator.SetBool("Gun", true);
-            animator.SetBool("Sword", false);
-            Axe.gameObject.SetActive(false);
-        }
-        if (Input.GetKeyDown("2"))
-        {
             animator.SetBool("Sword", true);
             animator.SetBool("Gun", false);
             Axe.gameObject.SetActive(true);
+            
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            animator.SetBool("Gun", true);
+            animator.SetBool("Sword", false);
+            Axe.gameObject.SetActive(false);
         }
 
     }

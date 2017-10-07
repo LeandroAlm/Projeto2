@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Farm : MonoBehaviour {
-    
+
+    Animator anim;
     private Transform player;
     private Terrain terreno;
     public TreeInstance treeInstance;
@@ -16,7 +17,8 @@ public class Farm : MonoBehaviour {
 	void Start ()
     {
         player = GetComponent<Transform>();
-	}
+        anim = GetComponent<Animator>();
+    }
 	
 	void Update ()
     {
@@ -30,17 +32,20 @@ public class Farm : MonoBehaviour {
         {
             Ray ray = new Ray(transform.position, transform.forward);
             
-            if (Physics.Raycast(ray, out hit, 4))
+            if (anim.GetBool("Sword") == true)
             {
-                if (hit.collider.tag == "Stone")
+                if (Physics.Raycast(ray, out hit, 4))
                 {
-                    hit.collider.GetComponent<Stone>().Damage();
-                    player.GetComponent<PlayerSatatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
-                }
-                if (hit.collider.tag == "Tree")
-                {
-                    hit.collider.GetComponent<Tree>().Damage();
-                    player.GetComponent<PlayerSatatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
+                    if (hit.collider.tag == "Stone")
+                    {
+                        hit.collider.GetComponent<Stone>().Damage();
+                        player.GetComponent<PlayerSatatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
+                    }
+                    if (hit.collider.tag == "Tree")
+                    {
+                        hit.collider.GetComponent<Tree>().Damage();
+                        player.GetComponent<PlayerSatatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
+                    }
                 }
             }
         }
