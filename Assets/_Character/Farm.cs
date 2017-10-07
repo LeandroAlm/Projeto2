@@ -8,12 +8,9 @@ public class Farm : MonoBehaviour {
     private Terrain terreno;
     public TreeInstance treeInstance;
     private GameObject go;
-    private detailScript detailScript;
     
     Ray ray;
     Vector3 forward;
-    int wood = 0;
-    int stone = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -33,25 +30,17 @@ public class Farm : MonoBehaviour {
         {
             Ray ray = new Ray(transform.position, transform.forward);
             
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 4))
             {
-                detailScript = hit.rigidbody.gameObject.GetComponent<detailScript>();
-                Debug.Log("Nome " + detailScript.Name);
-                if (hit.collider.gameObject.GetComponent<Terrain>() == null)
-                    
-                    return;
-                else if (hit.transform.position == treeInstance.position)
+                if (hit.collider.tag == "Stone")
                 {
-                    if (detailScript.Name == "Tree")
-                    {
-                        wood++;
-                        Debug.Log("wood: " + wood);
-                    }
-                    if (detailScript.Name == "Stone")
-                    {
-                        stone++;
-                        Debug.Log("Stone: " + wood);
-                    }
+                    hit.collider.GetComponent<Stone>().Damage();
+                    player.GetComponent<PlayerSatatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
+                }
+                if (hit.collider.tag == "Tree")
+                {
+                    hit.collider.GetComponent<Tree>().Damage();
+                    player.GetComponent<PlayerSatatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
                 }
             }
         }
