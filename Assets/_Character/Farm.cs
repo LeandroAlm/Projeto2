@@ -7,9 +7,11 @@ public class Farm : MonoBehaviour {
     Animator anim;
     private Transform player;
     private Terrain terreno;
-    public TreeInstance treeInstance;
     private GameObject go;
     
+    public TreeInstance treeInstance;
+    public GUIContent Mochila;
+
     Ray ray;
     Vector3 forward;
 
@@ -50,4 +52,5 @@ public class Farm : MonoBehaviour {
             }
         }
     }
+    
 }
